@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rafirit Station — Services</title>
+  <meta name="description" content="Rafirit Station — Web Development, SEO, Google Ads, Social Media & more. Full-service digital marketing and growth." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --card-radius:18px;
+      --max-width:1100px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#031226 0%, #071428 60%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+
+    /* NAV */
+    header{position:sticky;top:12px;z-index:40}
+    .nav{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px 18px;border-radius:14px;backdrop-filter: blur(6px);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#021025}
+    .brand h1{font-size:16px;margin:0}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);font-weight:600;font-size:14px;text-decoration:none}
+    .cta{background:linear-gradient(90deg,var(--accent),#7c3aed);padding:10px 14px;border-radius:10px;color:#021025;font-weight:700;text-decoration:none}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;margin-top:26px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:28px;border-radius:20px}
+    .kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);color:var(--muted);font-weight:700;font-size:13px}
+    h2{font-size:32px;margin:12px 0 8px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .feature{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(10,16,26,0.45);min-width:180px}
+    .feature svg{width:34px;height:34px;opacity:0.95}
+
+    /* services grid */
+    .services{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:var(--card-radius);box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:6px 0 8px}
+    .card p{color:var(--muted);margin:0 0 12px;font-size:14px}
+    .card .actions{display:flex;gap:8px}
+    .btn{padding:8px 12px;border-radius:10px;border:0;background:transparent;color:var(--accent);font-weight:700;cursor:pointer}
+    .btn.secondary{background:rgba(255,255,255,0.03);color:var(--muted)}
+
+    /* SIDEBAR HERO */
+    .hero-side{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,0.03)}
+    .quick-cta{display:flex;flex-direction:column;gap:12px}
+    .price{font-weight:800;font-size:22px}
+
+    /* contact */
+    .contact{margin-top:28px;padding:18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03);display:grid;grid-template-columns:1fr 360px;gap:18px}
+    form{display:flex;flex-direction:column;gap:12px}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:12px;color:inherit;outline:none}
+    textarea{min-height:120px;resize:vertical}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* FOOTER */
+    footer{margin:32px 0 80px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* RESPONSIVE */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 1fr}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .contact{grid-template-columns:1fr}
+    }
+    @media (max-width:720px){
+      .container{padding:16px}
+      .nav{padding:10px}
+      .hero{grid-template-columns:1fr;gap:16px}
+      nav{display:none}
+      .services{grid-template-columns:1fr}
+      .brand p{display:none}
+    }
+
+    /* subtle animations */
+    .reveal{opacity:0;transform:translateY(12px) scale(.995);transition:all 600ms cubic-bezier(.2,.9,.2,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* small pill list */
+    .pills{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted);font-size:13px}
+
+    /* micro-footer CTA */
+    .floating-cta{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--accent),#7c3aed);padding:12px 16px;border-radius:12px;color:#021025;font-weight:800;box-shadow:0 12px 30px rgba(7,12,20,0.6);z-index:60}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="nav">
+        <div class="brand">
+          <div class="logo">RS</div>
+          <div>
+            <h1>Rafirit Station</h1>
+            <p>Full‑stack digital marketing & web craftsmanship</p>
+          </div>
+        </div>
+
+        <nav aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#case-studies">Case Studies</a>
+          <a href="#contact">Contact</a>
+          <a class="cta" href="#contact">Start a Project</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Hero">
+        <div class="hero-card reveal">
+          <span class="kicker">Our Services — Rafirit Station</span>
+          <h2>Growth-first digital services that convert visitors into customers</h2>
+          <p class="lead">We design, build and scale digital experiences — websites, landing pages, ad funnels, and analytics — built on data, speed and conversion best practices.</p>
+
+          <div class="features">
+            <div class="feature">
+              <!-- lightning icon -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h7l-1 8L21 10h-7l-1-8z" fill="url(#g)" stroke="currentColor" stroke-opacity="0.08"/></svg>
+              <div>
+                <div style="font-weight:800">Conversion-focused</div>
+                <div class="muted" style="font-size:13px">CRO & landing pages</div>
+              </div>
+            </div>
+            <div class="feature">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-opacity="0.06"/></svg>
+              <div>
+                <div style="font-weight:800">Reliable tracking</div>
+                <div class="muted" style="font-size:13px">Server-side & GA4</div>
+              </div>
+            </div>
+            <div class="feature">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity="0.06"/></svg>
+              <div>
+                <div style="font-weight:800">Shop-ready</div>
+                <div class="muted" style="font-size:13px">Google Shopping & Merchant</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
+            <a class="cta" href="#contact">Request Quote</a>
+            <button class="btn secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+          </div>
+
+          <div style="margin-top:18px" class="pills">
+            <span class="pill">WordPress</span>
+            <span class="pill">Shopify</span>
+            <span class="pill">GA4</span>
+            <span class="pill">Server-side</span>
+            <span class="pill">Google Ads</span>
+          </div>
+        </div>
+
+        <aside class="hero-side reveal">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="muted">Quick Start</div>
+              <div class="price">From $299</div>
+              <div class="muted" style="font-size:13px">Landing pages | Small sites | Audits</div>
+            </div>
+            <div style="text-align:right">
+              <div class="muted">Avg. Launch</div>
+              <div style="font-weight:800">7–14 days</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="muted">Top services</div>
+            <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+              <li>Web Development & Design</li>
+              <li>Google Ads Setup & Audit</li>
+              <li>SEO & Local SEO</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:14px">
+            <a class="btn" href="#contact">Book Free Consult</a>
+            <button class="btn secondary" style="margin-left:8px" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">View Contact</button>
+          </div>
+        </aside>
+      </section>
+
+      <section id="services" style="margin-top:26px">
+        <h3 style="margin:0 0 12px">Services</h3>
+        <p class="muted">Comprehensive services to build, measure and grow — pick a service to get started.</p>
+
+        <div class="services reveal" id="services-grid">
+
+          <!-- repeat cards for each service -->
+
+          <article class="card">
+            <h3>Web Development</h3>
+            <p>Responsive, fast and secure websites with modern stacks — WordPress, headless, or custom builds.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Web Development')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Web Design (WordPress, Shopify, WIX)</h3>
+            <p>Pixel-perfect design and UX tailored to your brand, conversion-first and mobile-optimized.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Web Design')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Landing Page Create</h3>
+            <p>High-converting landing pages built for ad funnels and quick A/B tests.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Landing Page')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Graphic Design</h3>
+            <p>Brand assets, social creatives and ad visuals that stand out and convert.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Graphic Design')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Content Writing Service</h3>
+            <p>SEO-friendly content, blog posts, and ad copy written for clarity and conversion.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Content Writing')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>SEO Consultancy</h3>
+            <p>Technical SEO, content strategy and long-term roadmaps to grow organic traffic.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('SEO Consultancy')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Local SEO Service</h3>
+            <p>Local listings, GMB optimization and citation building to dominate local searches.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Local SEO')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>E-commerce SEO Service</h3>
+            <p>Category, product and site structure optimization for organic e‑commerce growth.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('E-commerce SEO')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Google Ads Campaign Setup</h3>
+            <p>Strategic campaign build for Search, Shopping, and Display — ROAS-focused ad setups.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Google Ads Setup')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Google Ads Campaign Audit & Optimization</h3>
+            <p>Deep audits and optimizations to reduce waste and increase conversions.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Google Ads Audit')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Google Merchant Center (Fix/Setup) with Google Shopping Ads</h3>
+            <p>Feed fixes, product mapping and Shopping Ads to maximize product visibility.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Merchant Center & Shopping')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Meta Ads</h3>
+            <p>Targeted campaigns on Facebook & Instagram with creative testing and scaling strategies.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Meta Ads')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>CRO — Conversion Rate Optimization</h3>
+            <p>Hypothesis‑driven A/B tests, heatmaps and UX improvements to increase conversion rates.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('CRO')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Social Media Management</h3>
+            <p>Strategy, posting, community and paid campaigns tailored to your audience.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Social Media Management')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Web Analytics</h3>
+            <p>Tracking plans, dashboards and insights to measure business outcomes accurately.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Web Analytics')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Google Ads Conversion Tracking with Server-Side Tracking</h3>
+            <p>Reliable conversions using server-side tagging for better attribution and data ownership.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Server-Side Tracking')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Pixel Setup & Conversion API - All Social Media</h3>
+            <p>Pixel installation and CAPI setup for Facebook, TikTok and more to improve tracking quality.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Pixel & CAPI')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>GA4 E-commerce Tracking with Server Side Tracking</h3>
+            <p>End-to-end e‑commerce event tracking with server-side collection for accuracy and privacy.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('GA4 E-commerce')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Cookie Consent V2 Setup</h3>
+            <p>GDPR & privacy-friendly cookie consent with granular control and best practices.</p>
+            <div class="actions">
+              <button class="btn" onclick="selectService('Cookie Consent')">Request Quote</button>
+              <button class="btn secondary" onclick="toggleDetails(this)">Learn More</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="contact" class="contact reveal">
+        <div>
+          <h3 style="margin-top:0">Start a project or book a free consultation</h3>
+          <p class="muted">Fill the form and we'll reply within 24 hours (business days).</p>
+
+          <form id="contactForm" onsubmit="return onSubmit(event)">
+            <input type="text" id="name" placeholder="Your name" required />
+            <input type="email" id="email" placeholder="Email address" required />
+            <select id="serviceSelect" required>
+              <option value="">Choose service (required)</option>
+            </select>
+            <textarea id="message" placeholder="Brief message — budget, timeline, goals"></textarea>
+            <div style="display:flex;gap:10px;align-items:center">
+              <button class="cta" type="submit">Send Request</button>
+              <button type="button" class="btn secondary" onclick="preFill()">I'm just browsing</button>
+            </div>
+            <div id="formMsg" class="muted"></div>
+          </form>
+        </div>
+
+        <aside style="padding:12px">
+          <h4 style="margin:0">Contact</h4>
+          <p class="muted" style="margin-top:6px">WhatsApp: +8801608243332<br/>Email: arafi.uits@gmail.com</p>
+
+          <div style="margin-top:16px">
+            <h5 style="margin:0">Why choose us?</h5>
+            <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+              <li>Data-driven decision making</li>
+              <li>Transparent reporting & dashboards</li>
+              <li>Fast delivery & ongoing optimization</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <footer>
+        <div>© Rafirit Station — Crafted with focus on conversions</div>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <a class="floating-cta" href="#contact">Start Project</a>
+
+  <script>
+    // Simple interactivity: fill service select, reveal on scroll, select service handler
+    const services = [
+      'Web Development', 'Web Design (WordPress, Shopify, WIX)', 'Landing Page Create', 'Graphic Design', 'Content Writing Service', 'SEO Consultancy', 'Local SEO Service', 'E-commerce SEO Service', 'Google Ads Campaign Setup', 'Google Ads Campaign Audit & Optimization', 'Google Merchant Center (Fix/Setup) with Google Shopping Ads', 'Meta Ads', 'CRO-Conversion Rate Optimization', 'Social Media Management', 'Web Analytics', 'Google Ads Conversion Tracking with Server-Side Tracking', 'Pixel Setup & Conversion API -All Social Media', 'GA4 E-commerce Tracking with Server Side Tracking', 'Cookie Consent V2 Setup'
+    ];
+
+    const sel = document.getElementById('serviceSelect');
+    services.forEach(s=>{
+      const opt = document.createElement('option'); opt.value=s; opt.textContent=s; sel.appendChild(opt);
+    });
+
+    function selectService(name){
+      sel.value = name; document.getElementById('name').focus(); window.scrollTo({top:document.getElementById('contact').offsetTop-20,behavior:'smooth'});
+    }
+
+    function toggleDetails(btn){
+      const card = btn.closest('.card');
+      if(!card.dataset.opened){
+        const more = document.createElement('p'); more.className='muted'; more.textContent='We provide discovery, execution and 30-day support after launch for this service.'; card.appendChild(more); card.dataset.opened='1'; btn.textContent='Less';
+      } else { // close
+        const last = card.querySelector('p.muted:last-of-type'); if(last) last.remove(); delete card.dataset.opened; btn.textContent='Learn More';
+      }
+    }
+
+    // Form handling (no backend — shows sample message)
+    function onSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('serviceSelect').value;
+      const msg = document.getElementById('message').value.trim();
+      const formMsg = document.getElementById('formMsg');
+      if(!name||!email||!service){ formMsg.textContent='Please fill the required fields.'; return false }
+      formMsg.textContent = 'Thanks, '+name+" — we've received your request for: "+service+". We'll contact you on "+email+" soon (this is a demo form).";
+      document.getElementById('contactForm').reset();
+      return false;
+    }
+
+    function preFill(){
+      document.getElementById('name').value='Just browsing'; document.getElementById('email').value=''; document.getElementById('message').value='No message, just checking services.';
+    }
+
+    // Reveal on scroll
+    const observers = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target) } });
+    },{threshold:0.12});
+    observers.forEach(n=>io.observe(n));
+
+    // Accessibility: focus outlines for keyboard users
+    document.body.addEventListener('keyup', (e)=>{ if(e.key==='Tab') document.documentElement.style.setProperty('--show-outline','1'); });
+
+  </script>
+</body>
+</html>
